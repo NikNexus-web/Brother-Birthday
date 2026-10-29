@@ -1,0 +1,647 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+    --green: #00ff88;
+    --green-dark: #00bd65;
+    --bg: #030806;
+    --panel: rgba(8, 22, 16, 0.94);
+    --text: #eafff3;
+    --muted: #83a594;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+}
+
+#matrix {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 20%, rgba(0,255,136,.10), transparent 60%),
+        linear-gradient(rgba(0,255,136,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,.025) 1px, transparent 1px);
+    background-size: auto, 40px 40px, 40px 40px;
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.08;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        #00ff88 4px
+    );
+}
+
+.hidden {
+    display: none !important;
+}
+
+.green,
+.brand span,
+.hero h1 span,
+.section-heading h2 span,
+.final-section h2 span {
+    color: var(--green);
+}
+
+.screen {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: #020604;
+}
+
+.intro-box {
+    width: min(100%, 520px);
+    text-align: center;
+    padding: 40px 25px;
+    border: 1px solid rgba(0,255,136,.35);
+    background: rgba(0, 255, 136, .025);
+    box-shadow: 0 0 60px rgba(0,255,136,.08);
+}
+
+.system-icon {
+    font-size: 55px;
+    color: var(--green);
+    animation: pulse 1.5s infinite;
+}
+
+.intro-box > p {
+    margin-top: 16px;
+    letter-spacing: 2px;
+}
+
+.intro-box h1 {
+    font: 900 clamp(35px, 9vw, 65px) 'Orbitron', sans-serif;
+    margin: 24px 0;
+    text-shadow: 0 0 25px rgba(0,255,136,.4);
+}
+
+.intro-box h1 span {
+    color: var(--green);
+}
+
+.progress {
+    height: 8px;
+    border: 1px solid var(--green);
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+#progressBar {
+    width: 0;
+    height: 100%;
+    background: var(--green);
+    box-shadow: 0 0 20px var(--green);
+    transition: width .12s linear;
+}
+
+#progressText {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 7%;
+    border-bottom: 1px solid rgba(0,255,136,.15);
+    background: rgba(0,0,0,.45);
+}
+
+.brand {
+    font: 800 19px 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.status {
+    color: var(--green);
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.status i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px var(--green);
+}
+
+.hero {
+    min-height: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--green);
+    font: 600 12px 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    margin: 25px 0 15px;
+    font: 900 clamp(48px, 11vw, 100px)/1.08 'Orbitron', sans-serif;
+    letter-spacing: -3px;
+    text-shadow: 0 0 35px rgba(0,255,136,.18);
+}
+
+.hero-description {
+    color: #b6d9c7;
+    font-size: 17px;
+    letter-spacing: 3px;
+}
+
+.level-card {
+    width: min(100%, 390px);
+    padding: 20px;
+    margin: 35px 0 25px;
+    border: 1px solid rgba(0,255,136,.3);
+    background: var(--panel);
+    text-align: left;
+}
+
+.level-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font: 600 11px 'Orbitron', sans-serif;
+}
+
+.level-row span:last-child {
+    color: var(--green);
+}
+
+.xp-track {
+    height: 8px;
+    margin: 15px 0;
+    background: #14261c;
+    overflow: hidden;
+}
+
+#xpBar {
+    width: 0;
+    height: 100%;
+    background: var(--green);
+    box-shadow: 0 0 15px var(--green);
+    transition: width .5s;
+}
+
+.small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.primary-btn {
+    position: relative;
+    padding: 17px 28px;
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: #00150b;
+    font: 800 12px 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.primary-btn:hover {
+    background: transparent;
+    color: var(--green);
+    box-shadow: 0 0 30px rgba(0,255,136,.2);
+    transform: translateY(-3px);
+}
+
+.hint {
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.section {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 90px 0;
+    scroll-margin-top: 30px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2,
+.final-section h2 {
+    margin: 15px 0;
+    font: 800 clamp(23px, 5vw, 37px) 'Orbitron', sans-serif;
+}
+
+.section-heading > p:last-child,
+.final-section > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.mission-card {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 12px;
+    padding: 24px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid rgba(0,255,136,.2);
+    cursor: pointer;
+    transition: .25s;
+}
+
+.mission-card:hover {
+    border-color: var(--green);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0,255,136,.08);
+}
+
+.mission-icon {
+    font-size: 30px;
+}
+
+.mission-number {
+    color: var(--green);
+    font: 600 10px 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.mission-card strong {
+    font: 700 14px 'Orbitron', sans-serif;
+}
+
+.mission-card small {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.mission-status {
+    margin-top: auto;
+    color: var(--green);
+    font: 600 10px 'Orbitron', sans-serif;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.photo-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(0,255,136,.25);
+    background: #07110b;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.photo-card:hover {
+    border-color: var(--green);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0,255,136,.12);
+}
+
+.photo-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    transition: .4s;
+}
+
+.photo-card:hover img {
+    transform: scale(1.06);
+}
+
+.photo-label {
+    padding: 12px;
+    background: #07110b;
+    color: var(--green);
+    font: 600 10px 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.achievement {
+    padding: 25px 15px;
+    text-align: center;
+    border: 1px solid rgba(0,255,136,.2);
+    background: var(--panel);
+}
+
+.achievement > span {
+    display: block;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.achievement strong {
+    font: 700 11px 'Orbitron', sans-serif;
+    color: var(--green);
+}
+
+.achievement p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.final-section {
+    text-align: center;
+    border-top: 1px solid rgba(0,255,136,.15);
+}
+
+.final-section > .primary-btn {
+    margin-top: 30px;
+}
+
+.reveal {
+    margin: 50px auto 0;
+    padding: 40px 20px;
+    max-width: 700px;
+    border: 1px solid var(--green);
+    background: rgba(0,255,136,.04);
+    box-shadow: 0 0 50px rgba(0,255,136,.08);
+    animation: reveal .7s ease;
+}
+
+.birthday-symbol {
+    font-size: 70px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+.reveal h2 {
+    margin-top: 20px;
+}
+
+.reveal h1 {
+    margin: 20px 0;
+    color: var(--green);
+    font: 900 clamp(25px, 6vw, 45px) 'Orbitron', sans-serif;
+    overflow-wrap: anywhere;
+}
+
+.birthday-message {
+    max-width: 520px;
+    margin: 25px auto;
+    color: #c4ddcf;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.reveal .primary-btn {
+    margin-top: 25px;
+}
+
+footer {
+    padding: 30px 15px;
+    text-align: center;
+    border-top: 1px solid rgba(0,255,136,.15);
+    color: var(--muted);
+    font: 10px 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    line-height: 2;
+}
+
+.viewer,
+.popup {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.94);
+}
+
+.viewer img {
+    max-width: min(90vw, 700px);
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid var(--green);
+    box-shadow: 0 0 40px rgba(0,255,136,.15);
+}
+
+#closeViewer,
+.close-popup {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    border: 0;
+    background: transparent;
+    color: var(--green);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#photoCaption {
+    position: absolute;
+    bottom: 25px;
+    color: var(--green);
+    font: 12px 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+}
+
+.popup-box {
+    position: relative;
+    width: min(500px, 100%);
+    padding: 45px 25px;
+    text-align: center;
+    border: 1px solid var(--green);
+    background: #06110a;
+    box-shadow: 0 0 50px rgba(0,255,136,.12);
+}
+
+.popup-box h2 {
+    margin: 20px 0;
+    color: var(--green);
+    font: 800 23px 'Orbitron', sans-serif;
+}
+
+.popup-box p {
+    color: #c4ddcf;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.music-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 30;
+    padding: 12px 15px;
+    border: 1px solid var(--green);
+    background: #06110a;
+    color: var(--green);
+    font: 600 10px 'Orbitron', sans-serif;
+    cursor: pointer;
+}
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 60;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .65; transform: scale(1.06); }
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .achievement-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        min-height: 550px;
+    }
+}
+
+@media (max-width: 400px) {
+    .topbar {
+        padding: 18px 5%;
+    }
+
+    .brand {
+        font-size: 15px;
+    }
+
+    .status {
+        font-size: 10px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .section {
+        width: 92%;
+        padding: 65px 0;
+    }
+
+    .primary-btn {
+        padding: 15px;
+        font-size: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.video-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 10px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid #00ff88;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.12);
+    overflow: hidden;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    max-height: 75vh;
+    border-radius: 10px;
+    background: #000;
+}
+
